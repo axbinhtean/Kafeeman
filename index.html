@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafe Eman - Coffee & Comfort in Alor Setar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        nav {
+            background: #3d4f43;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: #f5f1e8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(61, 79, 67, 0.92) 0%, rgba(42, 58, 48, 0.92) 100%), 
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600') center/cover;
+            color: #f5f1e8;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #d4af37;
+            color: #2a3a30;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            letter-spacing: 0.3px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 3.5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: #3d4f43;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* About */
+        .about-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 300;
+            color: #4a5568;
+        }
+
+        /* Menu - Completely redesigned for minimal, compact look */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .menu-category {
+            background: #ffffff;
+            padding: 1.3rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.3s;
+        }
+
+        .menu-category:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .menu-category h3 {
+            color: #3d4f43;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid #3d4f43;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .menu-item.featured {
+            background: #fffbeb;
+            padding: 0.4rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .menu-item-name {
+            flex: 1;
+            font-weight: 400;
+            color: #2d3748;
+        }
+
+        .menu-item.featured .menu-item-name {
+            font-weight: 500;
+        }
+
+        .menu-item-price {
+            color: #3d4f43;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: 0.8rem;
+        }
+
+        .star {
+            color: #d4af37;
+            margin-right: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Location */
+        .location-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .location-content p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-weight: 400;
+            color: #4a5568;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: #3d4f43;
+            color: #f5f1e8;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-card h3 {
+            color: #d4af37;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-card a {
+            color: #f5f1e8;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .contact-card a:hover {
+            color: #d4af37;
+        }
+
+        .hours-list {
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+
+        .hours-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(245, 241, 232, 0.15);
+            font-size: 0.95rem;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #2a3a30;
+            color: #f5f1e8;
+            text-align: center;
+            padding: 1.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            h2 {
+                font-size: 1.9rem;
+            }
+
+            section {
+                padding: 2.5rem 1rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .menu-category {
+                padding: 1rem;
+            }
+
+            .menu-item {
+                font-size: 0.85rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.6rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Kafe Eman</h1>
+        <p>Your Cozy Coffee Corner in Alor Setar</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://www.foodpanda.my/ms/restaurant/tkpt/kafe-eman" class="cta-button" target="_blank">Order From Foodpanda</a>
+            <a href="https://wa.me/60192827373" class="cta-button" style="background: #25D366;">Order on WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <p>Welcome to Kafe Eman, where every cup tells a story. Located in the heart of Alor Setar, we serve premium coffee, delicious beverages, and comfort food in a warm, inviting atmosphere. Whether you're looking for your morning caffeine fix or a relaxing evening spot, we're here to make your day better.</p>
+        </div>
+        
+        <!-- Image Showcase -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 2.5rem;">
+            <div style="border-radius: 12px; overflow: hidden; height: 220px;">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800" alt="Coffee being poured" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="border-radius: 12px; overflow: hidden; height: 220px;">
+                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800" alt="Cappuccino" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="border-radius: 12px; overflow: hidden; height: 220px;">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800" alt="Cozy cafe interior" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <div class="menu-grid">
+            <!-- Espresso -->
+            <div class="menu-category">
+                <h3>Espresso</h3>
+                <div class="menu-item">
+                    <span class="menu-item-name">Americano (Cold)</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Americano (Hot)</span>
+                    <span class="menu-item-price">RM8</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Latte (Cold)</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Latte (Hot)</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Cappuccino (Hot)</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Mocha (Cold)</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Mocha (Hot)</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Buttercream Latte</span>
+                    <span class="menu-item-price">RM14.90</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Biscoff Latte</span>
+                    <span class="menu-item-price">RM14.90</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Butterscotch Latte</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Vanilla Latte (Cold)</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Vanilla Latte (Hot)</span>
+                    <span class="menu-item-price">RM11</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Caramel Latte (Cold)</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Caramel Latte (Hot)</span>
+                    <span class="menu-item-price">RM11</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Hazelnut Latte (Cold)</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Hazelnut Latte (Hot)</span>
+                    <span class="menu-item-price">RM11</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Spanish Latte (Cold)</span>
+                    <span class="menu-item-price">RM13</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Spanish Latte (Hot)</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Caramel Macchiato</span>
+                    <span class="menu-item-price">RM15</span>
+                </div>
+            </div>
+
+            <!-- E-MAN Non Coffee -->
+            <div class="menu-category">
+                <h3>E-MAN Non Coffee</h3>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Coco (Cold)</span>
+                    <span class="menu-item-price">RM8</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Coco (Hot)</span>
+                    <span class="menu-item-price">RM6</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Teh Tarik (Cold)</span>
+                    <span class="menu-item-price">RM8</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Teh Tarik (Hot)</span>
+                    <span class="menu-item-price">RM6</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Oat (Cold)</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Oat (Hot)</span>
+                    <span class="menu-item-price">RM8</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Green Tea (Cold)</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Green Tea (Hot)</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+            </div>
+
+            <!-- E-MAN Coffee -->
+            <div class="menu-category">
+                <h3>E-MAN Coffee</h3>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Cappuccino (Cold)</span>
+                    <span class="menu-item-price">RM8</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Cappuccino (Hot)</span>
+                    <span class="menu-item-price">RM6</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Mocha (Cold)</span>
+                    <span class="menu-item-price">RM8</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Mocha (Hot)</span>
+                    <span class="menu-item-price">RM6</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Kopi O (Cold)</span>
+                    <span class="menu-item-price">RM6</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Kopi O (Hot)</span>
+                    <span class="menu-item-price">RM4</span>
+                </div>
+            </div>
+
+            <!-- E-MAN Frappe -->
+            <div class="menu-category">
+                <h3>E-MAN Frappe</h3>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Coco</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Teh Tarik</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Cappuccino</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>E-MAN Mocha</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">E-MAN Matcha</span>
+                    <span class="menu-item-price">RM16</span>
+                </div>
+            </div>
+
+            <!-- Chocolate -->
+            <div class="menu-category">
+                <h3>Chocolate</h3>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Chocolate (Cold)</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Chocolate (Hot)</span>
+                    <span class="menu-item-price">RM7</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Dark Chocolate (Cold)</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Dark Chocolate (Hot)</span>
+                    <span class="menu-item-price">RM8</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Chocolate Vanilla (Cold)</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Chocolate Vanilla (Hot)</span>
+                    <span class="menu-item-price">RM7</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Chocolate Hazelnut</span>
+                    <span class="menu-item-price">RM11</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Oat Dark Chocolate</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Dark Chocolate Strawberry</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+            </div>
+
+            <!-- Matcha -->
+            <div class="menu-category">
+                <h3>Matcha</h3>
+                <div class="menu-item">
+                    <span class="menu-item-name">Matcha Latte (Cold)</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Matcha Strawberry Latte</span>
+                    <span class="menu-item-price">RM16</span>
+                </div>
+            </div>
+
+            <!-- Soda -->
+            <div class="menu-category">
+                <h3>Soda</h3>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Apple</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Mango</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Peach</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Strawberry</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Peach Mango</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+            </div>
+
+            <!-- Drizzle -->
+            <div class="menu-category">
+                <h3>Drizzle</h3>
+                <div class="menu-item">
+                    <span class="menu-item-name">Drizzle Green Tea Caramel</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Drizzle Cappuccino Caramel</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Drizzle Green Tea Choco</span>
+                    <span class="menu-item-price">RM14</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Drizzle Double Chocolate</span>
+                    <span class="menu-item-price">RM11</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Drizzle Vanilla Choco</span>
+                    <span class="menu-item-price">RM12</span>
+                </div>
+            </div>
+
+            <!-- Vanilla -->
+            <div class="menu-category">
+                <h3>Vanilla</h3>
+                <div class="menu-item">
+                    <span class="menu-item-name">Vanilla Cold</span>
+                    <span class="menu-item-price">RM10</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Vanilla Hot</span>
+                    <span class="menu-item-price">RM7</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Vanilla Milkshake</span>
+                    <span class="menu-item-price">RM15</span>
+                </div>
+            </div>
+
+            <!-- Add-Ons -->
+            <div class="menu-category">
+                <h3>Add-Ons</h3>
+                <div class="menu-item">
+                    <span class="menu-item-name">Oat Milk</span>
+                    <span class="menu-item-price">RM3</span>
+                </div>
+                <div class="menu-item featured">
+                    <span class="menu-item-name"><span class="star">★</span>Whipped Cream</span>
+                    <span class="menu-item-price">RM2</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Caramel Drizzle</span>
+                    <span class="menu-item-price">RM2</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Chocolate Drizzle</span>
+                    <span class="menu-item-price">RM2</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Espresso Extra Shot</span>
+                    <span class="menu-item-price">RM3</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">1 Pump Vanilla Syrup</span>
+                    <span class="menu-item-price">RM1</span>
+                </div>
+            </div>
+
+            <!-- Food -->
+            <div class="menu-category">
+                <h3>Food</h3>
+                <div class="menu-item">
+                    <span class="menu-item-name">Sausage Cracker</span>
+                    <span class="menu-item-price">RM9</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Nugget Tempura 9pcs</span>
+                    <span class="menu-item-price">RM6.90</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Currypuff with Egg</span>
+                    <span class="menu-item-price">RM5.90</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-item-name">Kids Meal</span>
+                    <span class="menu-item-price">RM9.90</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%233d4f43'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23f5f1e8'%3ECappuccino Post%3C/text%3E%3C/svg%3E" alt="Cappuccino Social Media Post">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%233d4f43'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23f5f1e8'%3EFood Post%3C/text%3E%3C/svg%3E" alt="Food Social Media Post">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%23f5f1e8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%233d4f43'%3ERamadan Post%3C/text%3E%3C/svg%3E" alt="Ramadan Social Media Post">
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location">
+        <h2>Find Us</h2>
+        <div style="text-align: center; max-width: 600px; margin: 2rem auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8;">
+                <strong>Address:</strong><br>
+                22-A BWH, Jalan Tun Abdul Razak<br>
+                Taman Koperasi, 05200<br>
+                Alor Setar, Kedah
+            </p>
+            <a href="https://maps.app.goo.gl/BxLstTCgZHNugGYZR" class="cta-button" target="_blank" style="display: inline-block;">Google Map Location</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Phone</h3>
+                <a href="tel:+60192827373">+60 19-282 7373</a>
+            </div>
+            <div class="contact-card">
+                <h3>WhatsApp</h3>
+                <a href="https://wa.me/60192827373">Message Us</a>
+            </div>
+            <div class="contact-card">
+                <h3>Instagram</h3>
+                <a href="https://instagram.com/kafe.eman" target="_blank">@kafe.eman</a>
+            </div>
+            <div class="contact-card">
+                <h3>Email</h3>
+                <a href="mailto:kafeeman.info@gmail.com">kafeeman.info@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="contact-card" style="margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <h3>Opening Hours</h3>
+            <ul class="hours-list">
+                <li><strong>Monday - Thursday:</strong> 10:00 AM - 10:00 PM</li>
+                <li><strong>Friday:</strong> 3:00 PM - 10:00 PM</li>
+                <li><strong>Saturday - Sunday:</strong> 10:00 AM - 10:00 PM</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kafe Eman. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Designed by Abdullah</p>
+    </footer>
+
+    <!-- Smooth Scrolling Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
